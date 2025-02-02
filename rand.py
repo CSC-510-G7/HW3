@@ -1,8 +1,11 @@
-import subprocess
+"""
+This module generates a random array using Python's built-in random module.
+"""
+
+import random
 
 def random_array(arr):
-    shuffled_num = None
+    """Generates a random array with values between 1 and 20."""
     for i in range(len(arr)):
-        shuffled_num = subprocess.run(["shuf", "-i1-20", "-n1"], capture_output=True)
-        arr[i] = int(shuffled_num.stdout)
+        arr[i] = random.randint(1, 20)  # Replaced subprocess with random.randint()
     return arr
