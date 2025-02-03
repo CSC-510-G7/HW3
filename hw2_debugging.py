@@ -1,36 +1,57 @@
+"""
+This module contains an implementation of Merge Sort and a faulty prime number checker.
+"""
+
 import rand
 
-def mergeSort(arr):
-    if (len(arr) == 1):
+def merge_sort(arr):
+    """Performs Merge Sort on the given list."""
+    if len(arr) <= 1:
         return arr
 
-    half = len(arr)//2
+    half = len(arr) // 2
+    left_sorted = merge_sort(arr[:half])
+    right_sorted = merge_sort(arr[half:])
 
-    return recombine(mergeSort(arr[:half]), mergeSort(arr[half:]))
+    return recombine(left_sorted, right_sorted)
 
-def recombine(leftArr, rightArr):
-    leftIndex = 0
-    rightIndex = 0
-    mergeArr = [None] * (len(leftArr) + len(rightArr))
-    while leftIndex < len(leftArr) and rightIndex < len(rightArr):
-        if leftArr[leftIndex] < rightArr[rightIndex]:
-            rightIndex += 1
-            mergeArr[leftIndex + rightIndex] = leftArr[leftIndex]
+def recombine(left_arr, right_arr):
+    """Merges two sorted lists into one sorted list."""
+    left_index = 0
+    right_index = 0
+    merged_arr = []
+
+    while left_index < len(left_arr) and right_index < len(right_arr):
+        if left_arr[left_index] < right_arr[right_index]:
+            merged_arr.append(left_arr[left_index])
+            left_index += 1
         else:
-            leftIndex += 1
-            mergeArr[leftIndex + rightIndex] = rightArr[rightIndex]
+            merged_arr.append(right_arr[right_index])
+            right_index += 1
 
-    for i in range(rightIndex, len(rightArr)):
-        mergeArr[leftIndex + rightIndex] = rightArr[i]
-    
-    for i in range(leftIndex, len(leftArr)):
-        mergeArr[leftIndex + rightIndex] = leftArr[i]
+    merged_arr.extend(left_arr[left_index:])
+    merged_arr.extend(right_arr[right_index:])
 
-    return mergeArr
+    return merged_arr
 
+# Faulty Code for step3 (Prime Number Checker)
+def faulty_is_prime(n):
+    """Checks if a number is prime (contains logical errors)."""
+    if n <= 1:  # Fixed: 1 and negatives are NOT prime
+        return False  
+
+    for i in range(2, int(n ** 0.5) + 1):  # Fixed: Only check up to sqrt(n)
+        if n % i == 0:
+            return False
+    return True
+
+# Test the faulty function
+print("Is 1 prime?", faulty_is_prime(1))  # Expected: False
+print("Is 9 prime?", faulty_is_prime(9))  # Expected: False
+print("Is 17 prime?", faulty_is_prime(17))  # Expected: True
+
+# Generating and sorting a random array
 arr = rand.random_array([None] * 20)
-arr_out = mergeSort(arr)
+arr_out = merge_sort(arr)
 
 print(arr_out)
-
-
