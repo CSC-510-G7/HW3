@@ -1,4 +1,8 @@
-import pytest  # Keep pytest import because the homework requires using pytest
+"""
+pytest- Unit tests for merge_sort function.
+"""
+
+import pytest
 from hw2_debugging import merge_sort
 
 @pytest.mark.parametrize("input_arr, expected", [
