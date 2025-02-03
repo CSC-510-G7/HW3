@@ -4,16 +4,15 @@ This module contains an implementation of Merge Sort and a faulty prime number c
 
 import rand
 
-def merge_sort(arr):
-    """Performs Merge Sort on the given list."""
-    if len(arr) <= 1:
-        return arr
-
-    half = len(arr) // 2
-    left_sorted = merge_sort(arr[:half])
-    right_sorted = merge_sort(arr[half:])
-
+def merge_sort(input_arr):  # Renamed 'arr' to 'input_arr'
+    """Sorts an array using the merge sort algorithm."""
+    if len(input_arr) <= 1:
+        return input_arr
+    half = len(input_arr) // 2
+    left_sorted = merge_sort(input_arr[:half])
+    right_sorted = merge_sort(input_arr[half:])
     return recombine(left_sorted, right_sorted)
+
 
 def recombine(left_arr, right_arr):
     """Merges two sorted lists into one sorted list."""
@@ -38,8 +37,7 @@ def recombine(left_arr, right_arr):
 def faulty_is_prime(n):
     """Checks if a number is prime (contains logical errors)."""
     if n <= 1:  # Fixed: 1 and negatives are NOT prime
-        return False  
-
+        return False
     for i in range(2, int(n ** 0.5) + 1):  # Fixed: Only check up to sqrt(n)
         if n % i == 0:
             return False
