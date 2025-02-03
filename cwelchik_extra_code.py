@@ -1,7 +1,7 @@
 """This module contains an implementation of bubble sort"""
 import rand
 
-def bubble_sort(arr: list[int]):
+def bubble_sort(arr):
     """
     Bubble sort implemenation
 
