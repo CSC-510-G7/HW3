@@ -16,5 +16,5 @@ import secrets
 def random_array(arr):
     """Generates a random array with values between 1 and 20."""
     for idx, _ in enumerate(arr):
-        arr[idx] = secrets.randbelow(21)  # Replaced subprocess with random.randint()
+        arr[idx] = secrets.randbelow(21)  # Replaced subprocess with secrets.randbelow() to pass bandit security
     return arr
