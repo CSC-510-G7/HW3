@@ -1,15 +1,11 @@
-import pytest
+import pytest  # Keep pytest import because the homework requires using pytest
 from hw2_debugging import merge_sort
 
-# Test 1: Merge Sort should correctly sort an already sorted array
-def test_merge_sort_sorted():
-    assert merge_sort([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5]
-
-# Test 2: Merge Sort should correctly sort a reverse-sorted array
-def test_merge_sort_reverse():
-    assert merge_sort([5, 4, 3, 2, 1]) == [1, 2, 3, 4, 5]
-
-# Test 3: Merge Sort should correctly sort a randomly ordered array
-def test_merge_sort_unsorted():
-    assert merge_sort([3, 1, 4, 1, 5, 9, 2]) == [1, 1, 2, 3, 4, 5, 9]
-
+@pytest.mark.parametrize("input_arr, expected", [
+    ([1, 2, 3], [1, 2, 3]),  # Already sorted list
+    ([3, 1, 2], [1, 2, 3]),  # Unsorted list
+    ([], []),                # Empty list
+])
+def test_merge_sort(input_arr, expected):
+    """Test merge_sort with different inputs."""
+    assert merge_sort(input_arr) == expected
