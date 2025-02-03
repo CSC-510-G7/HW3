@@ -16,6 +16,7 @@ def bubble_sort(arr: list[int]):
     # repeat until array is sorted
     done = False
     while not done:
+        done = True
         for i in range(1, len(arr)):
             if arr[i] < arr[i - 1]:
                 # swap if right < left
@@ -23,7 +24,6 @@ def bubble_sort(arr: list[int]):
                 temp = arr[i]
                 arr[i] = arr[i - 1]
                 arr[i - 1] = temp
-        done = True
 
     return arr
 
