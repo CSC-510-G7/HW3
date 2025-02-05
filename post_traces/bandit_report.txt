@@ -1,22 +1,31 @@
-Run started:2025-02-05 07:45:39.137909
+Run started:2025-02-03 17:44:00.793913
 
 Test results:
-	No issues identified.
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.2/blacklists/blacklist_calls.html#b311-random
+   Location: .\rand.py:19:17
+18	    for i in range(len(arr)):
+19	        arr[i] = random.randint(1, 20)  # Replaced subprocess with random.randint()
+20	    return arr
+
+--------------------------------------------------
 
 Code scanned:
-	Total lines of code: 56
+	Total lines of code: 51
 	Total lines skipped (#nosec): 0
 	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
 
 Run metrics:
 	Total issues (by severity):
 		Undefined: 0
-		Low: 0
+		Low: 1
 		Medium: 0
 		High: 0
 	Total issues (by confidence):
 		Undefined: 0
 		Low: 0
 		Medium: 0
-		High: 0
+		High: 1
 Files skipped (0):
