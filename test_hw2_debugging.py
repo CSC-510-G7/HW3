@@ -1,17 +1,15 @@
-"""test file for the merge sort functionality in hw2_debugging.py"""
+"""
+pytest- Unit tests for merge_sort function.
+"""
+
+import pytest
 from hw2_debugging import merge_sort
 
-def test_empty_list():
-    """tests merge sort on an empty list"""
-    expected = []
-    assert expected == merge_sort([])
-
-def test_single_item():
-    """tests merge sort on a list of length 1"""
-    expected = [5]
-    assert expected == merge_sort([5])
-
-def test_unsorted_list():
-    """tests merge sort on an unsorted list"""
-    expected = [1, 2, 3, 4, 5, 6, 7]
-    assert expected == merge_sort([7, 5, 6, 1, 2, 4, 3])
+@pytest.mark.parametrize("input_arr, expected", [
+    ([1, 2, 3], [1, 2, 3]),  # Already sorted list
+    ([3, 1, 2], [1, 2, 3]),  # Unsorted list
+    ([], []),                # Empty list
+])
+def test_merge_sort(input_arr, expected):
+    """Test merge_sort with different inputs."""
+    assert merge_sort(input_arr) == expected
