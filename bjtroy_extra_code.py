@@ -1,6 +1,6 @@
 """This module contains an implementation of DFS to detect a cycle in a directed graph."""
 
-def _dfs(node: int, graph: dict[int, list[int]], visited: set[int]) -> bool:
+def _dfs(node, graph, visited):
     """Helper function to perform a depth-first search on a component in the graph."""
     if node in visited:
         return True
@@ -13,7 +13,7 @@ def _dfs(node: int, graph: dict[int, list[int]], visited: set[int]) -> bool:
     return False
 
 
-def has_cycle(graph: dict[int, list[int]]) -> bool:
+def has_cycle(graph):
     """Returns True if the graph has a cycle, False otherwise."""
     # Initialize the set of visited nodes.
     visited = set()
